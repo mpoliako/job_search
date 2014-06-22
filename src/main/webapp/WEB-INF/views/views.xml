@@ -1,0 +1,53 @@
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+	<definition name="main_template" template="/WEB-INF/views/main_template.jsp">
+	</definition>
+	<definition name="applicantTab" extends="main_template">
+		<put-attribute name="tabs" value="/WEB-INF/views/applicant_tabs.jsp" />
+	</definition>
+	<definition name="employerTab" extends="main_template">
+		<put-attribute name="tabs" value="/WEB-INF/views/employer_tabs.jsp" />
+	</definition>
+	<definition name="searchVacancy" extends="applicantTab">
+		<put-attribute name="content" value="/WEB-INF/views/search_vacancy.jsp" />
+	</definition>
+	<definition name="myCv" extends="applicantTab">
+		<put-attribute name="content" value="/WEB-INF/views/personal_cv.jsp" />
+	</definition>
+	<definition name="selectedVacancy" extends="applicantTab">
+		<put-attribute name="content"
+			value="/WEB-INF/views/selected_vacancy.jsp" />
+	</definition>
+	<definition name="selectedCvMy" extends="applicantTab">
+		<put-attribute name="content" value="/WEB-INF/views/selected_cv.jsp" />
+	</definition>
+	<definition name="addUser" extends="applicantTab">
+		<put-attribute name="content" value="/WEB-INF/views/add_user.jsp" />
+	</definition>
+	<definition name="addUserSuccess" extends="applicantTab">
+		<put-attribute name="content"
+			value="/WEB-INF/views/add_user_success.jsp" />
+	</definition>
+	<definition name="addCv" extends="applicantTab">
+		<put-attribute name="content" value="/WEB-INF/views/add_cv.jsp" />
+	</definition>
+	<definition name="searchCv" extends="employerTab">
+		<put-attribute name="content" value="/WEB-INF/views/search_cv.jsp" />
+	</definition>
+	<definition name="addVacancy" extends="employerTab">
+		<put-attribute name="content" value="/WEB-INF/views/add_vacancy.jsp" />
+	</definition>
+	<definition name="myVacancy" extends="employerTab">
+		<put-attribute name="content"
+			value="/WEB-INF/views/personal_vacancy.jsp" />
+	</definition>
+	<definition name="selectedVacancyMy" extends="employerTab">
+		<put-attribute name="content"
+			value="/WEB-INF/views/selected_vacancy.jsp" />
+	</definition>
+	<definition name="selectedCv" extends="employerTab">
+		<put-attribute name="content" value="/WEB-INF/views/selected_cv.jsp" />
+	</definition>
+</tiles-definitions>

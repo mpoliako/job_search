@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+http://www.springframework.org/schema/context
+http://www.springframework.org/schema/context/spring-context-3.0.xsd
+http://www.springframework.org/schema/tx
+http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
+	<context:component-scan base-package="com.mpoliako.controller" />
+	<tx:annotation-driven transaction-manager="transactionManager" />
+	<bean
+		class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor" />
+	<!-- <bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" 
+		/> -->
+
+
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
+		destroy-method="close">
+		<property name="driverClass" value="com.mysql.jdbc.Driver" />
+		<property name="jdbcUrl" value="jdbc:mysql://localhost:3306/WEB" />
+		<property name="user" value="root" />
+		<property name="password" value="dgj555mm" />
+		<!-- Pool properties -->
+		<property name="minPoolSize" value="5" />
+		<property name="maxPoolSize" value="20" />
+		<property name="maxStatements" value="50" />
+		<property name="idleConnectionTestPeriod" value="3000" />
+		<property name="loginTimeout" value="300" />
+	</bean>
+
+	<bean id="jpaVendorAdapter"
+		class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+		<property name="showSql" value="false" />
+		<property name="generateDdl" value="false" />
+		<property name="database" value="MYSQL" />
+	</bean>
+
+	<bean id="entityManagerFactory"
+		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="jpaVendorAdapter" ref="jpaVendorAdapter" />
+		<!-- spring based scanning for entity classes -->
+		<property name="packagesToScan" value="com.mpoliako" />
+	</bean>
+
+	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager"/>
+	<bean id="userDao" class="com.mpoliako.dao.impl.UserDaoImpl" />
+	<bean id="cvDao" class="com.mpoliako.dao.impl.CvDaoImpl" />
+	<bean id="vacancyDao" class="com.mpoliako.dao.impl.VacancyDaoImpl" />
+
+</beans>

@@ -1,0 +1,25 @@
+<beans:beans xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns="http://www.springframework.org/schema/security" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+http://www.springframework.org/schema/security
+http://www.springframework.org/schema/security/spring-security-3.2.xsd">
+
+
+	
+	<http auto-config="true" use-expressions="true">
+		<form-login login-page="/"/>
+	</http>
+	
+
+	<authentication-manager>
+		<authentication-provider user-service-ref="userService" />
+	</authentication-manager>
+
+
+	<jdbc-user-service id="userService" data-source-ref="dataSource"
+		users-by-username-query="select email, password, true from user where email=?"
+		authorities-by-username-query="select login,'ROLE_AUTHENTIFICATED' from user where email=?" />
+
+</beans:beans>
+
